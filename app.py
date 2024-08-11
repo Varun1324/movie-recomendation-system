@@ -8,21 +8,21 @@ st.set_page_config(page_title="Movie Recomendation System", layout="wide",page_i
 # Custom CSS for styling
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
 
-hide_streamlit_style = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .block-container {
-        margin:0;
-        padding-top: 0px;
-    }
-    .stApp {
-        background-color: black;
-    }
-    </style>
-    """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+# hide_streamlit_style = """
+#     <style>
+#     #MainMenu {visibility: hidden;}
+#     footer {visibility: hidden;}
+#     header {visibility: hidden;}
+#     .block-container {
+#         margin:0;
+#         padding-top: 0px;
+#     }
+#     .stApp {
+#         background-color: black;
+#     }
+#     </style>
+#     """
+# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 st.markdown('''
     <style>
@@ -31,12 +31,12 @@ st.markdown('''
         .navbar {
             width:100%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             background-color: black;
             border-radius: 5px;
             color:white;
-            border-bottom: 1px solid white;
+            
         }
         .navbar-text {
             font-size: 2.3rem;
@@ -70,7 +70,7 @@ if selected == "Home":
     with st.form(key='input_form'):
         cell1, cell2 = st.columns(2, vertical_alignment="bottom")
         cell1.markdown("""<h5>Preferred Year</h5>""", unsafe_allow_html=True)
-        year = cell2.number_input("", value=None, max_value=2025)
+        year = cell2.number_input("", value=None, min_value=1901,max_value=2023)
         cell3, cell4 = st.columns(2, vertical_alignment="bottom")
         cell3.markdown("""<h5>Preferred Runtime (in minutes)</h5>""", unsafe_allow_html=True)
         runtime = cell4.number_input("", value=None)
@@ -83,7 +83,7 @@ if selected == "Home":
     if submit_button:
         with st.spinner('Wait for it...'):
             time.sleep(5)
-        if selected_genres:
+        if selected_genres and year is not None and runtime is not None:
             user_input = {
                 'year': year,
                 'runtime': runtime,
@@ -100,7 +100,7 @@ if selected == "Home":
                     st.caption(f"Certificate: {row['Certificate']}")
                     st.caption(f"Runtime: {row['Runtime']}")
         else:
-            st.write("Please select at least one genre.")
+            st.toast("Please provide all required inputs: genres, year, and runtime.")
 elif selected == "About":
     with st.container():
         st.header("ABOUT US")
