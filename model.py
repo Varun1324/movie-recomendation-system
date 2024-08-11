@@ -90,7 +90,7 @@ def recommend_movie(user_input):
     distances, indices = knn.kneighbors(user_features_scaled)
 
     recommended_movies = data.iloc[indices[0]]
-    return recommended_movies[['Series_Title', 'IMDB_Rating','Certificate','Runtime']]
+    return recommended_movies[['Poster_Link','Series_Title', 'IMDB_Rating','Certificate','Runtime']]
 
 # static input for testing
 # user_input = {
