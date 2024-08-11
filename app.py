@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from model import recommend_movie
 
-st.set_page_config(page_title="Movie Recomendation System", layout="wide")
+st.set_page_config(page_title="Movie Recomendation System", layout="wide",page_icon='https://res.cloudinary.com/durc5ydxo/image/upload/v1723357786/Cinecue_uwkas6.png')
 
 # Custom CSS for styling
 st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
